@@ -37,7 +37,7 @@ cd /opt/gitd/gitd
 Install the dependencies:
 
 ```
-pip install -r requirements.txt
+pip install -r requirements/production.txt
 ```
 
 Migrate the SQLite database:
@@ -91,7 +91,7 @@ USER=ubuntu
 GROUP=ubuntu
 WORKERS=3
 BIND=unix:/opt/gitd/run/gunicorn.sock
-DJANGO_SETTINGS_MODULE=gitd.settings
+DJANGO_SETTINGS_MODULE=gitd.settings.production
 DJANGO_WSGI_MODULE=gitd.wsgi
 LOG_LEVEL=error
 

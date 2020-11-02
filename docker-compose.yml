@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: docker/django/Dockerfile
+    restart: always
+    image: gitd
+    container_name: gitd-web
+    command: /bin/bash /code/docker/django/start
+    volumes:
+      - .:/code
+    expose:
+      - '6819'
+    ports:
+      - '6819:6819'
+    networks:
+      - gitd
+
+networks:
+  gitd:

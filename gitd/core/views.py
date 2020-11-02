@@ -4,7 +4,13 @@ from hashlib import sha256
 from ipaddress import ip_address, ip_network
 
 from django.conf import settings
-from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden, HttpResponseServerError
+from django.http import (
+    HttpRequest,
+    HttpResponse,
+    HttpResponseBadRequest,
+    HttpResponseForbidden,
+    HttpResponseServerError,
+)
 from django.utils.encoding import force_bytes
 from django.utils.translation import gettext
 from django.views.decorators.csrf import csrf_exempt
@@ -18,7 +24,7 @@ from gitd.core.handlers import github_handler
 
 @require_POST
 @csrf_exempt
-def github(request):
+def github(request: HttpRequest) -> HttpResponse:
     # Verify if request came from GitHub
     forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
     client_ip_address = ip_address(forwarded_for)

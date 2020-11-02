@@ -1,3 +1,4 @@
+import shlex
 import subprocess
 from gettext import gettext
 from typing import Dict
@@ -19,7 +20,8 @@ class GitHubHandler:
         if data["ref"] != settings.GITHUB_BRANCH:
             return gettext("Event ignored because it was not pushed to %s.") % settings.GITHUB_BRANCH
 
-        subprocess.Popen(settings.GITD_DEPLOYMENT_COMMAND)
+        args = shlex.split(settings.GITD_DEPLOYMENT_COMMAND)
+        subprocess.Popen(args)
         deployment = Deployment.objects.create(service=Services.GITHUB, delivery=delivery_id)
 
         return gettext("Deployment started with id %s.") % deployment.id

@@ -1,4 +1,4 @@
--r requirements.txt
+-r base.txt
 
 black==20.8b1
 flake8==3.8.4

@@ -2,9 +2,9 @@ from pathlib import Path
 
 from decouple import Csv, config
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-SECRET_KEY = config("SECRET_KEY", default="gitd.settings")
+SECRET_KEY = config("SECRET_KEY", default="gitd.settings.local")
 
 DEBUG = config("DEBUG", default=True, cast=bool)
 
